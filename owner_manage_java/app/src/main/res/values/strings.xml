@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">owner_manage_java</string>
+    <string name="spn_title">項目を選択してください</string>
+    <string-array name="spncategory_content">
+        <item>場所</item>
+        <item>管理者</item>
+    </string-array>
+    <string-array name="spnitem_content_place">
+        <item>川村研</item>
+        <item>宮田研</item>
+        <item>大島研</item>
+        <item>内田研</item>
+        <item>須志田研</item>
+        <item>宇都木研</item>
+        <item>山野辺研</item>
+        <item>島川研</item>
+    </string-array>
+
+    <string-array name="spnitem_content_admin">
+        <item>うちだ</item>
+        <item>うつぎ</item>
+        <item>おおしま</item>
+        <item>かわむら</item>
+        <item>しまかわ</item>
+        <item>すしだ</item>
+        <item>みやた</item>
+        <item>やまのべ</item>
+    </string-array>
+</resources>
