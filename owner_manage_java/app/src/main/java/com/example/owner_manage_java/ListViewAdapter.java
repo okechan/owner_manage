@@ -28,21 +28,28 @@ public class ListViewAdapter extends ArrayAdapter<ListData> {
 
         TextView idText;
         TextView nameText;
-        TextView yomiText;
-        TextView kentyoText;
-        TextView yomi_kentyoText;
+        TextView adminText;
+        TextView placeText;
+        TextView numberText;
+        TextView yearText;
+        TextView monthText;
+        TextView dayText;
 
         idText = (TextView)convertView.findViewById(R.id.id);
         nameText = (TextView)convertView.findViewById(R.id.name);
-        yomiText = (TextView)convertView.findViewById(R.id.yomi);
-        kentyoText = (TextView)convertView.findViewById(R.id.kentyo);
-        yomi_kentyoText = (TextView)convertView.findViewById(R.id.yomi_kentyo);
+        adminText = (TextView)convertView.findViewById(R.id.admin);
+        placeText = (TextView)convertView.findViewById(R.id.place);
+        numberText = (TextView)convertView.findViewById(R.id.number);
+        yearText = (TextView)convertView.findViewById(R.id.year);
+        monthText = (TextView)convertView.findViewById(R.id.month);
+        dayText = (TextView)convertView.findViewById(R.id.day);
 
-        idText.setText(data.getId());
+        idText.setText("資産コード"+data.getId());
         nameText.setText(data.getName());
-        yomiText.setText(data.getYomi());
-        kentyoText.setText(data.getKentyo());
-        yomi_kentyoText.setText(data.getYomi_kentyo());
+        adminText.setText(data.getadmin());
+        placeText.setText(data.getplace());
+        numberText.setText(data.getnumber());
+        yearText.setText(data.getyear()+data.getmonth()+data.getday());
 
         return convertView;
     }

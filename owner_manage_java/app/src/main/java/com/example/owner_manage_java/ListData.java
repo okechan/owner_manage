@@ -3,9 +3,12 @@ package com.example.owner_manage_java;
 public class ListData {
     String id;
     String name;
-    String yomi;
-    String kentyo;
-    String yomi_kentyo;
+    String admin;
+    String place;
+    String number;
+    String year;
+    String month;
+    String day;
 
     public void setId(String id){
         this.id = id;
@@ -23,27 +26,50 @@ public class ListData {
         return name;
     }
 
-    public void setYomi(String yomi){
-        this.yomi = yomi;
+    public void setAdmin(String admin){
+        this.admin = admin;
     }
 
-    public  String getYomi(){
-        return yomi;
+    public  String getadmin(){
+        return admin;
     }
 
-    public void setKentyo(String kentyo){
-        this.kentyo = kentyo;
+    public void setplace(String place){
+        this.place = place;
     }
 
-    public String getKentyo(){
-        return kentyo;
+    public String getplace(){
+        return place;
     }
 
-    public void setYomi_kentyo(String yomi_kentyo){
-        this.yomi_kentyo = yomi_kentyo;
+    public void setnumber(String number){
+        this.number = number;
     }
 
-    public String getYomi_kentyo(){
-        return yomi_kentyo;
+    public String getnumber(){
+        return number;
+    }
+    public void setyear(String year){
+        this.year = year;
+    }
+
+    public  String getyear(){
+        return year;
+    }
+
+    public void setmonth(String month){
+        this.month = month;
+    }
+
+    public String getmonth(){
+        return month;
+    }
+
+    public void setday(String day){
+        this.day = day;
+    }
+
+    public String getday(){
+        return day;
     }
 }

@@ -29,9 +29,12 @@ public class CsvReader {
                 //CSVの左([0]番目)から順番にセット
                 data.setId(RowData[0]);
                 data.setName(RowData[1]);
-                data.setYomi(RowData[2]);
-                data.setKentyo(RowData[3]);
-                data.setYomi_kentyo(RowData[4]);
+                data.setAdmin(RowData[2]);
+                data.setplace(RowData[3]);
+                data.setnumber(RowData[4]);
+                data.setyear(RowData[5]);
+                data.setmonth(RowData[6]);
+                data.setday(RowData[7]);
 
                 objects.add(data);
             }
