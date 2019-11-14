@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -18,7 +19,6 @@ public class SubActivity_view extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_sub_view);
 
         Button returnButton = findViewById(R.id.return_button);
@@ -47,40 +47,56 @@ public class SubActivity_view extends AppCompatActivity {
         }
         public void onNothingSelected(AdapterView<?> parent) {}
     });
+        findViewById(R.id.Search_button).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                final CsvReader_editsearch editsearch = new CsvReader_editsearch();
+                ListViewAdapter listViewAdapter = new ListViewAdapter(getApplicationContext(), 0, editsearch.objects);
+                ListView listview = (ListView) findViewById(R.id.view_view);
+                listViewAdapter.clear();
+                EditText edit1 = (EditText) findViewById(R.id.editText);
+                String edit = edit1.getText().toString();
+                editsearch.reader(getApplicationContext(), edit);
+                listview.setAdapter(listViewAdapter);
+            }
+        });
+
 }
 
-    private void createSpinner(final String select){
+    private void createSpinner(final String select) {
         Spinner sp2 = findViewById(R.id.spinner2);
         final CsvReader_search csvsearch = new CsvReader_search();
-        ArrayList<String> spnitem_content_place = new ArrayList<String>(Arrays.asList("島川研","山野辺研","宇都木研","須志田研","内田研","大島研","宮田研","川村研","409","410","411","412","413","414","415"));
-        ArrayList<String> spnitem_content_admin = new ArrayList<String>(Arrays.asList("内田","宇都木","大島","川村","島川","須志田","宮田","山野辺"));
-        switch(select){
+        ArrayList<String> spnitem_content_place = new ArrayList<String>(Arrays.asList("島川研", "山野辺研", "宇都木研", "須志田研", "内田研", "大島研", "宮田研", "川村研", "409", "410", "411", "412", "413", "414", "415"));
+        ArrayList<String> spnitem_content_admin = new ArrayList<String>(Arrays.asList("内田", "宇都木", "大島", "川村", "島川", "須志田", "宮田", "山野辺"));
+        switch (select) {
             case "場所":
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(this,android.R.layout.select_dialog_item,spnitem_content_place);
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.select_dialog_item, spnitem_content_place);
                 sp2.setAdapter(adapter);
                 break;
-            case"管理者":
-                ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this,android.R.layout.select_dialog_item,spnitem_content_admin);
+            case "管理者":
+                ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, android.R.layout.select_dialog_item, spnitem_content_admin);
                 sp2.setAdapter(adapter2);
                 break;
         }
         sp2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
-                ListViewAdapter listViewAdapter = new ListViewAdapter(getApplicationContext(),0,csvsearch.objects);
-                ListView listview = (ListView)findViewById(R.id.view_view);
+                ListViewAdapter listViewAdapter = new ListViewAdapter(getApplicationContext(), 0, csvsearch.objects);
+                ListView listview = (ListView) findViewById(R.id.view_view);
                 listViewAdapter.clear();
                 Spinner sp2 = (Spinner) parent;
                 Toast.makeText(SubActivity_view.this,
                         String.format("選択項目：%s", select),
                         Toast.LENGTH_LONG).show();
 
-                csvsearch.reader(getApplicationContext(),select,sp2.getSelectedItem());
+                csvsearch.reader(getApplicationContext(), select, sp2.getSelectedItem());
 
                 listview.setAdapter(listViewAdapter);
 
             }
-            public void onNothingSelected(AdapterView<?> parent) {}
+
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
         });
     }
 }
