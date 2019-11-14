@@ -41,15 +41,13 @@ public class ListViewAdapter extends ArrayAdapter<ListData> {
         placeText = (TextView)convertView.findViewById(R.id.place);
         numberText = (TextView)convertView.findViewById(R.id.number);
         yearText = (TextView)convertView.findViewById(R.id.year);
-        monthText = (TextView)convertView.findViewById(R.id.month);
-        dayText = (TextView)convertView.findViewById(R.id.day);
 
-        idText.setText("資産コード"+data.getId());
-        nameText.setText(data.getName());
-        adminText.setText(data.getadmin());
-        placeText.setText(data.getplace());
-        numberText.setText(data.getnumber());
-        yearText.setText(data.getyear()+data.getmonth()+data.getday());
+        idText.setText("資産コード:"+data.getId());
+        nameText.setText("品物名:"+data.getName());
+        adminText.setText("管理者:"+data.getadmin());
+        placeText.setText("管理場所:"+data.getplace());
+        numberText.setText("個数:"+data.getnumber());
+        yearText.setText("最終確認日時:"+data.getyear()+"/"+data.getmonth()+"/"+data.getday());
 
         return convertView;
     }

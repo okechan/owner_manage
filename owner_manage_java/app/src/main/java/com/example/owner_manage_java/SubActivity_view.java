@@ -28,7 +28,7 @@ public class SubActivity_view extends AppCompatActivity {
                 finish();
             }
         });
-        Spinner sp = findViewById(R.id.spinner);
+        Spinner sp1 = findViewById(R.id.spinner);
 
         //csv読み込み
         CsvReader parser = new CsvReader();
@@ -38,15 +38,11 @@ public class SubActivity_view extends AppCompatActivity {
     //csv読み込みリストへ反映終わり
 
     //スピナーの設定
-        sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        sp1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
         public void onItemSelected(AdapterView<?> parent, View view,
         int position, long id) {
-            Spinner sp = (Spinner) parent;
-            Toast.makeText(SubActivity_view.this,
-                    String.format("選択項目：%s", sp.getSelectedItem()),
-                    Toast.LENGTH_SHORT).show();
-            String select =sp.getSelectedItem().toString();
-            createSpinner(select);
+            Spinner sp1 = (Spinner) parent;
+            createSpinner(sp1.getSelectedItem().toString());
 
         }
         public void onNothingSelected(AdapterView<?> parent) {}
@@ -55,7 +51,7 @@ public class SubActivity_view extends AppCompatActivity {
 
     private void createSpinner(String select){
         Spinner sp2 = findViewById(R.id.spinner2);
-        ArrayList<String> spnitem_content_place = new ArrayList<String>(Arrays.asList("401","402","403","404","405","406","407","408","409","410","411","412","413","414","415"));
+        ArrayList<String> spnitem_content_place = new ArrayList<String>(Arrays.asList("島川研","山野辺研","宇都木研","須志田研","内田研","大島研","宮田研","川村研","409","410","411","412","413","414","415"));
         ArrayList<String> spnitem_content_admin = new ArrayList<String>(Arrays.asList("内田","宇都木","大島","川村","島川","須志田","宮田","山野辺"));
         switch(select){
             case "場所":
@@ -70,12 +66,11 @@ public class SubActivity_view extends AppCompatActivity {
         sp2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
-                Spinner sp = (Spinner) parent;
+                Spinner sp2 = (Spinner) parent;
                 Toast.makeText(SubActivity_view.this,
-                        String.format("選択項目：%s", sp.getSelectedItem()),
-                        Toast.LENGTH_SHORT).show();
+                        String.format("選択項目：%s", sp2.getSelectedItem()),
+                        Toast.LENGTH_LONG).show();
             }
-
             public void onNothingSelected(AdapterView<?> parent) {}
         });
     }
