@@ -33,7 +33,8 @@ public class SubActivity_view extends AppCompatActivity {
         //csv読み込み
         CsvReader parser = new CsvReader();
         parser.reader(getApplicationContext());
-        ListViewAdapter listViewAdapter = new ListViewAdapter(this,0,parser.objects);ListView listview = (ListView)findViewById(R.id.view_view);
+        ListViewAdapter listViewAdapter = new ListViewAdapter(this,0,parser.objects);
+        ListView listview = (ListView)findViewById(R.id.view_view);
         listview.setAdapter(listViewAdapter);
     //csv読み込みリストへ反映終わり
 
@@ -43,14 +44,14 @@ public class SubActivity_view extends AppCompatActivity {
         int position, long id) {
             Spinner sp1 = (Spinner) parent;
             createSpinner(sp1.getSelectedItem().toString());
-
         }
         public void onNothingSelected(AdapterView<?> parent) {}
     });
 }
 
-    private void createSpinner(String select){
+    private void createSpinner(final String select){
         Spinner sp2 = findViewById(R.id.spinner2);
+        final CsvReader_search csvsearch = new CsvReader_search();
         ArrayList<String> spnitem_content_place = new ArrayList<String>(Arrays.asList("島川研","山野辺研","宇都木研","須志田研","内田研","大島研","宮田研","川村研","409","410","411","412","413","414","415"));
         ArrayList<String> spnitem_content_admin = new ArrayList<String>(Arrays.asList("内田","宇都木","大島","川村","島川","須志田","宮田","山野辺"));
         switch(select){
@@ -66,10 +67,18 @@ public class SubActivity_view extends AppCompatActivity {
         sp2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
+                ListViewAdapter listViewAdapter = new ListViewAdapter(getApplicationContext(),0,csvsearch.objects);
+                ListView listview = (ListView)findViewById(R.id.view_view);
+                listViewAdapter.clear();
                 Spinner sp2 = (Spinner) parent;
                 Toast.makeText(SubActivity_view.this,
-                        String.format("選択項目：%s", sp2.getSelectedItem()),
+                        String.format("選択項目：%s", select),
                         Toast.LENGTH_LONG).show();
+
+                csvsearch.reader(getApplicationContext(),select,sp2.getSelectedItem());
+
+                listview.setAdapter(listViewAdapter);
+
             }
             public void onNothingSelected(AdapterView<?> parent) {}
         });
