@@ -32,8 +32,6 @@ public class ListViewAdapter extends ArrayAdapter<ListData> {
         TextView placeText;
         TextView numberText;
         TextView yearText;
-        TextView monthText;
-        TextView dayText;
 
         idText = (TextView)convertView.findViewById(R.id.id);
         nameText = (TextView)convertView.findViewById(R.id.name);

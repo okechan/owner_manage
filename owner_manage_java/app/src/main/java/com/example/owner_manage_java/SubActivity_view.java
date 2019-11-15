@@ -85,12 +85,7 @@ public class SubActivity_view extends AppCompatActivity {
                 ListView listview = (ListView) findViewById(R.id.view_view);
                 listViewAdapter.clear();
                 Spinner sp2 = (Spinner) parent;
-                Toast.makeText(SubActivity_view.this,
-                        String.format("選択項目：%s", select),
-                        Toast.LENGTH_LONG).show();
-
                 csvsearch.reader(getApplicationContext(), select, sp2.getSelectedItem());
-
                 listview.setAdapter(listViewAdapter);
 
             }

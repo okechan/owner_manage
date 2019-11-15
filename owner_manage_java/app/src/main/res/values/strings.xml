@@ -28,5 +28,6 @@
     </string-array>
     <string name="hint">資産コードを入力してください</string>
     <string name="search">検索</string>
+    <string name="detalis">詳細</string>
 
 </resources>
