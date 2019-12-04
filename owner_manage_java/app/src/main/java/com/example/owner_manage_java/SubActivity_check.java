@@ -29,7 +29,7 @@ public class SubActivity_check extends AppCompatActivity{
         });
         CsvReader parser = new CsvReader();
         parser.reader(getApplicationContext());
-        final ListViewAdapter listViewAdapter = new ListViewAdapter(this,0,parser.objects);
+        final ListViewAdapter_check listViewAdapter = new ListViewAdapter_check(this,0,parser.objects);
         lv.setAdapter(listViewAdapter);
         //csv読み込みリストへ反映終わり
 

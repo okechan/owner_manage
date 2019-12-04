@@ -2,6 +2,7 @@
     <string name="app_name">owner_manage_java</string>
     <string name="spn_title">項目を選択してください</string>
     <string-array name="spncategory_content">
+        <item>ALL</item>
         <item>場所</item>
         <item>管理者</item>
     </string-array>

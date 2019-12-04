@@ -10,10 +10,10 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class ListViewAdapter extends ArrayAdapter<ListData> {
+public class ListViewAdapter_check extends ArrayAdapter<ListData> {
     private LayoutInflater layoutInflater;
 
-    public ListViewAdapter(Context context, int resource, List<ListData> objects) {
+    public ListViewAdapter_check(Context context, int resource, List<ListData> objects) {
         super(context, resource, objects);
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -23,7 +23,7 @@ public class ListViewAdapter extends ArrayAdapter<ListData> {
     public View getView(int position, View convertView, ViewGroup parent) {
         ListData data = (ListData)getItem(position);
         if (null == convertView) {
-            convertView = layoutInflater.inflate(R.layout.list_item, null);
+            convertView = layoutInflater.inflate(R.layout.list_item_check, null);
         }
 
         TextView idText;
