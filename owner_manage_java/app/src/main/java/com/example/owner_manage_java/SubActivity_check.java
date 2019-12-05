@@ -2,19 +2,21 @@ package com.example.owner_manage_java;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class SubActivity_check extends AppCompatActivity{
     private ListView lv;
-
+    final CsvReader csvReader_list = new CsvReader();
+    private static String[][] itemlist = new String[10000][8];
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,14 +26,18 @@ public class SubActivity_check extends AppCompatActivity{
         returnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(SubActivity_check.this,
+                        String.format("ファイルが出力されました"),
+                        Toast.LENGTH_LONG).show();
                 finish();
             }
         });
-        CsvReader parser = new CsvReader();
+        final CsvReader parser = new CsvReader();
         parser.reader(getApplicationContext());
         final ListViewAdapter_check listViewAdapter = new ListViewAdapter_check(this,0,parser.objects);
         lv.setAdapter(listViewAdapter);
         //csv読み込みリストへ反映終わり
+
 
         findViewById(R.id.Searchviewbutton).setOnClickListener(new View.OnClickListener(){
             @Override
@@ -48,13 +54,49 @@ public class SubActivity_check extends AppCompatActivity{
         });
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position,long id){
-                String item =  listViewAdapter.getItem(position).toString();
+            public void onItemClick(AdapterView<?> parent, View view, int position,long id) {
+                long item = listViewAdapter.getItemId(position);
                 Toast.makeText(SubActivity_check.this,
                         String.format("選択項目：%s", item),
                         Toast.LENGTH_LONG).show();
-
             }
         });
+        lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
+            public boolean onItemLongClick(AdapterView<?> av,View view,int position,long id){
+                long things = listViewAdapter.getItemId(position);
+                int thing = (int)things;
+                itemlist = CsvReader.csvReader_list;
+                System.out.println(thing);
+                System.out.println(itemlist[thing][2].toString());
+                itemlist[thing][5]=getthisyear();
+                itemlist[thing][6]=getthismonth();
+                itemlist[thing][7]=gettoday();
+                CsvWriter.writer(itemlist);
+                Toast.makeText(SubActivity_check.this,
+                        String.format("チェックされました"),
+                        Toast.LENGTH_LONG).show();
+                return false;
+            }
+
+        }
+        );
+    }
+    public static String[][] get(){
+        return itemlist;
+    }
+    public static String gettoday(){
+        final DateFormat df = new SimpleDateFormat("dd");
+        final Date date = new Date(System.currentTimeMillis());
+        return df.format(date);
+    }
+    public static String getthismonth(){
+        final DateFormat df = new SimpleDateFormat("MM");
+        final Date date = new Date(System.currentTimeMillis());
+        return df.format(date);
+    }
+    public static String getthisyear(){
+        final DateFormat df = new SimpleDateFormat("yyyy");
+        final Date date = new Date(System.currentTimeMillis());
+        return df.format(date);
     }
 }

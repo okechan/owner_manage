@@ -86,8 +86,7 @@ public class SubActivity_view extends AppCompatActivity {
         }
 
         sp2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            public void onItemSelected(AdapterView<?> parent, View view,
-                                       int position, long id) {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if(select.equals("ALL")) {
                     ListViewAdapter listViewAdapter = new ListViewAdapter(getApplicationContext(), 0, allsearch.objects);
                     ListView listview = (ListView) findViewById(R.id.view_view);
