@@ -2,7 +2,11 @@ package com.example.owner_manage_java;
 
 import android.content.Context;
 import android.content.res.AssetManager;
+import android.os.Environment;
+
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -16,16 +20,15 @@ public class CsvReader_editsearch {
         AssetManager assetManager = context.getResources().getAssets();
         try {
             // CSVファイルの読み込み
-            InputStream inputStream = assetManager.open("data.csv");
-            InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-            BufferedReader bufferReader = new BufferedReader(inputStreamReader);
+            File file = new File(Environment.getExternalStorageDirectory().getPath()+"/test.csv");
+            FileReader fr = new FileReader(file);
+            BufferedReader br = new BufferedReader(fr);
             String line;
 
-            while ((line = bufferReader.readLine()) != null) {
+            while ((line = br.readLine()) != null) {
                 //カンマ区切りで１つづつ配列に入れる
                 ListData data = new ListData();
                 String[] RowData = line.split(",");
-
                 if(edit.equals(RowData[0])){
                     data.setId(RowData[0]);
                     data.setName(RowData[1]);
@@ -38,7 +41,7 @@ public class CsvReader_editsearch {
                     objects.add(data);
                 }
             }
-            bufferReader.close();
+            br.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

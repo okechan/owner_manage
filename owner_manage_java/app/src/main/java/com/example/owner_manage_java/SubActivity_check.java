@@ -13,6 +13,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import static com.example.owner_manage_java.CsvReader.arraylist;
+
 public class SubActivity_check extends AppCompatActivity{
     private ListView lv;
     final CsvReader csvReader_list = new CsvReader();
@@ -38,12 +40,25 @@ public class SubActivity_check extends AppCompatActivity{
         lv.setAdapter(listViewAdapter);
         //csv読み込みリストへ反映終わり
 
+        findViewById(R.id.clean).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                final CsvReader_editsearch editsearch = new CsvReader_editsearch();
+                ListViewAdapter_check listViewAdapter_edit = new ListViewAdapter_check(getApplicationContext(), 0, editsearch.objects);
+                listViewAdapter.clear();
+                ListView listview = (ListView) findViewById(R.id.check_view);
+                parser.reader(getApplicationContext());
+                listview.setAdapter(listViewAdapter);
+
+            }
+        });
+
 
         findViewById(R.id.Searchviewbutton).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 final CsvReader_editsearch editsearch = new CsvReader_editsearch();
-                ListViewAdapter listViewAdapter = new ListViewAdapter(getApplicationContext(), 0, editsearch.objects);
+                ListViewAdapter_check listViewAdapter = new ListViewAdapter_check(getApplicationContext(), 0, editsearch.objects);
                 ListView listview = (ListView) findViewById(R.id.check_view);
                 listViewAdapter.clear();
                 EditText edit1 = (EditText) findViewById(R.id.editText2);
@@ -52,7 +67,7 @@ public class SubActivity_check extends AppCompatActivity{
                 listview.setAdapter(listViewAdapter);
             }
         });
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+        /*lv.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,long id) {
                 long item = listViewAdapter.getItemId(position);
@@ -60,18 +75,15 @@ public class SubActivity_check extends AppCompatActivity{
                         String.format("選択項目：%s", item),
                         Toast.LENGTH_LONG).show();
             }
-        });
+        });*/
         lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
             public boolean onItemLongClick(AdapterView<?> av,View view,int position,long id){
                 long things = listViewAdapter.getItemId(position);
                 int thing = (int)things;
-                itemlist = CsvReader.csvReader_list;
-                System.out.println(thing);
-                System.out.println(itemlist[thing][2].toString());
-                itemlist[thing][5]=getthisyear();
-                itemlist[thing][6]=getthismonth();
-                itemlist[thing][7]=gettoday();
-                CsvWriter.writer(itemlist);
+                arraylist.get(thing).set(5,getthisyear());
+                arraylist.get(thing).set(6,getthismonth());
+                arraylist.get(thing).set(7,gettoday());
+                CsvWriter.writer(arraylist);
                 Toast.makeText(SubActivity_check.this,
                         String.format("チェックされました"),
                         Toast.LENGTH_LONG).show();

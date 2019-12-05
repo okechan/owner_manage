@@ -21,7 +21,8 @@ import static android.content.Context.MODE_PRIVATE;
 public class CsvReader {
     List<ListData> objects = new ArrayList<ListData>();
     public static String[][] csvReader_list = new String[100][8];
-    int i=0;
+    public static ArrayList<ArrayList<String>> arraylist = new ArrayList<>();
+    int j=0;
     public void reader(Context context) {
         AssetManager assetManager = context.getResources().getAssets();
         try {
@@ -31,7 +32,7 @@ public class CsvReader {
             BufferedReader br = new BufferedReader(fr);
             String line;
             while ((line = br.readLine()) != null) {
-
+                ArrayList<String> array = new ArrayList<>();
                 //カンマ区切りで１つづつ配列に入れる
                 ListData data = new ListData();
                 String[] RowData = line.split(",");
@@ -44,9 +45,13 @@ public class CsvReader {
                 data.setyear(RowData[5]);
                 data.setmonth(RowData[6]);
                 data.setday(RowData[7]);
-                csvReader_list[i]=RowData;
+                csvReader_list[j]=RowData;
+                for (int i=0;i<8;i++) {
+                    array.add(RowData[i]);
+                }
                 objects.add(data);
-                i++;
+                arraylist.add(array);
+                j++;
             }
             br.close();
         } catch (IOException e) {
