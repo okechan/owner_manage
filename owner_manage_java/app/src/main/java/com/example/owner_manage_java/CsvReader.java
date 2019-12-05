@@ -5,8 +5,10 @@ import android.content.res.AssetManager;
 import android.os.Environment;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -22,14 +24,13 @@ public class CsvReader {
     int i=0;
     public void reader(Context context) {
         AssetManager assetManager = context.getResources().getAssets();
-        //List<String[]> list_List= Arrays.asList(list);
         try {
             /* CSVファイルの読み込み */
-            InputStream inputStream = assetManager.open("data.csv");
-            InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-            BufferedReader bufferReader = new BufferedReader(inputStreamReader);
+            File file = new File(Environment.getExternalStorageDirectory().getPath()+"/test.csv");
+            FileReader fr = new FileReader(file);
+            BufferedReader br = new BufferedReader(fr);
             String line;
-            while ((line = bufferReader.readLine()) != null) {
+            while ((line = br.readLine()) != null) {
 
                 //カンマ区切りで１つづつ配列に入れる
                 ListData data = new ListData();
@@ -47,7 +48,7 @@ public class CsvReader {
                 objects.add(data);
                 i++;
             }
-            bufferReader.close();
+            br.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
