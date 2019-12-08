@@ -20,7 +20,6 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class CsvReader {
     List<ListData> objects = new ArrayList<ListData>();
-    public static String[][] csvReader_list = new String[100][8];
     public static ArrayList<ArrayList<String>> arraylist = new ArrayList<>();
     int j=0;
     public void reader(Context context) {
@@ -45,7 +44,6 @@ public class CsvReader {
                 data.setyear(RowData[5]);
                 data.setmonth(RowData[6]);
                 data.setday(RowData[7]);
-                csvReader_list[j]=RowData;
                 for (int i=0;i<8;i++) {
                     array.add(RowData[i]);
                 }
