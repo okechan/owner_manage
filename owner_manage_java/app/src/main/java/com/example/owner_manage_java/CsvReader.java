@@ -10,13 +10,9 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import static android.content.Context.MODE_PRIVATE;
 
 public class CsvReader {
     List<ListData> objects = new ArrayList<ListData>();
