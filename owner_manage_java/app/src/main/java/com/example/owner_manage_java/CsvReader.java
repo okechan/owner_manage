@@ -20,11 +20,12 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class CsvReader {
     List<ListData> objects = new ArrayList<ListData>();
-    public static ArrayList<ArrayList<String>> arraylist = new ArrayList<>();
-    int j=0;
+    public static ArrayList<ArrayList<String>> arraylist_all = new ArrayList<>();
+    private Context context;
     public void reader(Context context) {
-        AssetManager assetManager = context.getResources().getAssets();
+        this.context = context;
         try {
+            arraylist_all.clear();
             /* CSVファイルの読み込み */
             File file = new File(Environment.getExternalStorageDirectory().getPath()+"/test.csv");
             FileReader fr = new FileReader(file);
@@ -48,8 +49,7 @@ public class CsvReader {
                     array.add(RowData[i]);
                 }
                 objects.add(data);
-                arraylist.add(array);
-                j++;
+                arraylist_all.add(array);
             }
             br.close();
         } catch (IOException e) {

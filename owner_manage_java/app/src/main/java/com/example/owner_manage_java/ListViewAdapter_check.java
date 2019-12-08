@@ -34,18 +34,18 @@ public class ListViewAdapter_check extends ArrayAdapter<ListData> {
         TextView yearText;
 
         idText = (TextView)convertView.findViewById(R.id.id);
-        nameText = (TextView)convertView.findViewById(R.id.name);
-        adminText = (TextView)convertView.findViewById(R.id.admin);
+      //  nameText = (TextView)convertView.findViewById(R.id.name);
+       // adminText = (TextView)convertView.findViewById(R.id.admin);
        // placeText = (TextView)convertView.findViewById(R.id.place);
       //  numberText = (TextView)convertView.findViewById(R.id.number);
         yearText = (TextView)convertView.findViewById(R.id.year);
 
         idText.setText("資産コード:"+data.getId());
-        nameText.setText("品物名:"+data.getName());
-        adminText.setText("管理者:"+data.getadmin());
+        //nameText.setText("品物名:"+data.getName());
+        //adminText.setText("管理者:"+data.getadmin());
         //placeText.setText("管理場所:"+data.getplace());
         //numberText.setText("個数:"+data.getnumber());
-        yearText.setText("最終確認日時:"+data.getyear()+"/"+data.getmonth()+"/"+data.getday());
+        yearText.setText("最終確認日時:"+data.getyear()+"/"+data.getmonth());
 
         return convertView;
     }

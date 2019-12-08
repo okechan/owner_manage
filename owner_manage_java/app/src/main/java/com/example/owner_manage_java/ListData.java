@@ -69,7 +69,4 @@ public class ListData {
         this.day = day;
     }
 
-    public String getday(){
-        return day;
-    }
 }
