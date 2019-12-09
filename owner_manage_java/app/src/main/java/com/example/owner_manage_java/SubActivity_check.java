@@ -1,8 +1,10 @@
 package com.example.owner_manage_java;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -41,27 +43,25 @@ public class SubActivity_check extends AppCompatActivity{
         final ListViewAdapter_check listViewAdapter_all = new ListViewAdapter_check(this, 0, parser.objects);
         lv.setAdapter(listViewAdapter_all);
         //csv読み込みリストへ反映終わり
-
-        findViewById(R.id.clean).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final CsvReader_editsearch editsearch = new CsvReader_editsearch();
-                listViewAdapter_all.clear();
-                parser.reader(getApplicationContext());
-                lv.setAdapter(listViewAdapter_all);
-            }
-        });
-
+        
         findViewById(R.id.Searchviewbutton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final CsvReader_editsearch editsearch = new CsvReader_editsearch();
                 ListViewAdapter_check listViewAdapter_edit = new ListViewAdapter_check(getApplicationContext(), 0, editsearch.objects);
+                listViewAdapter_all.clear();
                 listViewAdapter_edit.clear();
-                EditText edit1 = (EditText) findViewById(R.id.editText2);
+                EditText edit1 = findViewById(R.id.editText2);
                 String edit = edit1.getText().toString();
-                editsearch.reader(getApplicationContext(), edit);
-                lv.setAdapter(listViewAdapter_edit);
+                if(edit.isEmpty()){
+                    parser.reader(getApplicationContext());
+                    lv.setAdapter(listViewAdapter_all);
+                }else {
+                    editsearch.reader(getApplicationContext(), edit);
+                    lv.setAdapter(listViewAdapter_edit);
+                }
+                InputMethodManager inputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
             }
         });
 

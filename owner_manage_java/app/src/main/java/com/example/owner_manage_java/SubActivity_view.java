@@ -1,8 +1,10 @@
 package com.example.owner_manage_java;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -65,11 +67,19 @@ public class SubActivity_view extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ListViewAdapter listViewAdapter_edit = new ListViewAdapter(getApplicationContext(), 0, editsearch.objects);
+                listViewAdapter_all.clear();
                 listViewAdapter_edit.clear();
-                EditText edit1 = (EditText) findViewById(R.id.editText);
+                EditText edit1 = findViewById(R.id.editText);
                 String edit = edit1.getText().toString();
-                editsearch.reader(getApplicationContext(), edit);
-                listview.setAdapter(listViewAdapter_edit);
+                if(edit.isEmpty()){
+                    allsearch.reader(getApplicationContext());
+                    listview.setAdapter(listViewAdapter_all);
+                }else {
+                    editsearch.reader(getApplicationContext(), edit);
+                    listview.setAdapter(listViewAdapter_edit);
+                }
+                InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
             }
         });
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener(){

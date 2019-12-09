@@ -8,8 +8,8 @@
 
     <Button
         android:id="@+id/return_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="88dp"
+        android:layout_height="46dp"
         android:text="保存"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -44,19 +44,13 @@
 
     <ListView
         android:id="@+id/check_view"
-        android:layout_width="341dp"
-        android:layout_height="374dp"
-        android:layout_marginTop="120dp"
+        android:layout_width="354dp"
+        android:layout_height="354dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="70dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/clean"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
-        android:text="clean"
-        app:layout_constraintBottom_toTopOf="@+id/return_button"
-        app:layout_constraintEnd_toEndOf="parent" />
 </android.support.constraint.ConstraintLayout>
