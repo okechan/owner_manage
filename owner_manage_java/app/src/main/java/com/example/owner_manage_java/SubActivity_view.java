@@ -17,7 +17,7 @@ import static com.example.owner_manage_java.CsvReader_search.arraylist_search;
 
 public class SubActivity_view extends AppCompatActivity {
     Bundle args = new Bundle();
-    final MyDialogFragment dialogFragment = new MyDialogFragment();
+    final MyDialogFragment_view dialogFragment = new MyDialogFragment_view();
 
     ArrayList<String> spnitem_content_place = new ArrayList<String>(Arrays.asList("島川研", "山野辺研", "宇都木研", "須志田研", "内田研", "大島研", "宮田研", "川村研", "409", "410", "411", "412", "413", "414", "415"));
     ArrayList<String> spnitem_content_admin = new ArrayList<String>(Arrays.asList("内田", "宇都木", "大島", "川村", "島川", "須志田", "宮田", "山野辺"));
@@ -36,8 +36,6 @@ public class SubActivity_view extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sub_view);
         Spinner sp1 = findViewById(R.id.spinner);
-        Spinner sp2 = findViewById(R.id.spinner2);
-        EditText edit1 = (EditText) findViewById(R.id.editText);
         Button returnButton = findViewById(R.id.return_button);
         final ListView listview = (ListView) findViewById(R.id.view_view);
         returnButton.setOnClickListener(new View.OnClickListener() {
@@ -83,12 +81,10 @@ public class SubActivity_view extends AppCompatActivity {
                 if(select.equals("場所")||select.equals("管理者")) {
                     listViewAdapter_search.clear();
                     search.reader(getApplicationContext(), select, select2);
-  //                  listViewAdapter_search.notifyDataSetChanged();
                     for (int i = 0; i < 8; i++) tempolary_item[i] = arraylist_search.get((int) listViewAdapter_search.getItemId(position)).get(i);
                 }else if(select.equals("ALL")){
                     listViewAdapter_all.clear();
                     allsearch.reader(getApplicationContext());
-//                    listViewAdapter_all.notifyDataSetChanged();
                     for (int i=0;i<8;i++) tempolary_item[i] = arraylist_all.get((int)listViewAdapter_all.getItemId(position)).get(i);
                 }
                 args.putStringArray("temporary",tempolary_item);
