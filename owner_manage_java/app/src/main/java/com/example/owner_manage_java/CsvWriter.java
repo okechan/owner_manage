@@ -16,7 +16,6 @@ public class CsvWriter {
     private static final String NEW_LINE="\r\n";
     public static void writer(ArrayList<ArrayList<String>> itemise){
         try{
-
             File file = new File(Environment.getExternalStorageDirectory().getPath()+"/test.csv");
             file.delete();
             file.createNewFile();

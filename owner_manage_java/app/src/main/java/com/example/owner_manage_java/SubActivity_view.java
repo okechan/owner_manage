@@ -21,8 +21,8 @@ public class SubActivity_view extends AppCompatActivity {
     Bundle args = new Bundle();
     final MyDialogFragment_view dialogFragment = new MyDialogFragment_view();
 
-    ArrayList<String> spnitem_content_place = new ArrayList<String>(Arrays.asList("島川研", "山野辺研", "宇都木研", "須志田研", "内田研", "大島研", "宮田研", "川村研", "409", "410", "411", "412", "413", "414", "415"));
-    ArrayList<String> spnitem_content_admin = new ArrayList<String>(Arrays.asList("内田", "宇都木", "大島", "川村", "島川", "須志田", "宮田", "山野辺"));
+    ArrayList<String> spnitem_content_place = new ArrayList<String>(Arrays.asList("島川研", "山野辺研", "宇都木研", "須志田研", "内田研", "大島研", "宮田研", "川村研", "佐藤研","409", "410", "411", "412", "413", "414", "415"));
+    ArrayList<String> spnitem_content_admin = new ArrayList<String>(Arrays.asList("島川", "山野辺", "宇都木", "須志田","内田", "大島", "宮田", "川村", "佐藤"));
     ArrayList<String> spnitem_content_all = new ArrayList<String>(Arrays.asList("ALL"));
 
     final CsvReader allsearch = new CsvReader();
