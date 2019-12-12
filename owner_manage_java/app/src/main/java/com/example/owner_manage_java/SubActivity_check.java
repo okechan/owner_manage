@@ -14,6 +14,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import es.dmoral.toasty.Toasty;
+
 import static com.example.owner_manage_java.CsvReader.arraylist_all;
 import static com.example.owner_manage_java.CsvReader_editsearch.arraylist_edit;
 
@@ -37,7 +39,7 @@ public class SubActivity_check extends AppCompatActivity{
         returnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(SubActivity_check.this,
+                Toasty.success(SubActivity_check.this,
                         String.format("ファイルが出力されました"),
                         Toast.LENGTH_LONG).show();
                 finish();
@@ -48,7 +50,9 @@ public class SubActivity_check extends AppCompatActivity{
         final ListViewAdapter_check listViewAdapter_all = new ListViewAdapter_check(this, 0, parser.objects);
         lv.setAdapter(listViewAdapter_all);
         //csv読み込みリストへ反映終わり
+
         final EditText edit1 = findViewById(R.id.editText2);
+
         findViewById(R.id.Searchviewbutton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
