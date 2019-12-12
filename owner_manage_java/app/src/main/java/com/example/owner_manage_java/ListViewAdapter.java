@@ -45,7 +45,7 @@ public class ListViewAdapter extends ArrayAdapter<ListData> {
    //     adminText.setText("管理者:"+data.getadmin());
         //placeText.setText("管理場所:"+data.getplace());
         //numberText.setText("個数:"+data.getnumber());
-        yearText.setText("最終確認日時:"+data.getyear()+"/"+data.getmonth());
+        yearText.setText("最終確認日時:"+data.getyear());
 
         return convertView;
     }

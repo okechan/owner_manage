@@ -16,14 +16,14 @@ public class CsvWriter {
     private static final String NEW_LINE="\r\n";
     public static void writer(ArrayList<ArrayList<String>> itemise){
         try{
-            File file = new File(Environment.getExternalStorageDirectory().getPath()+"/test.csv");
+            File file = new File(Environment.getExternalStorageDirectory().getPath()+"/data1.csv");
             file.delete();
             file.createNewFile();
-            FileWriter fw = new FileWriter(Environment.getExternalStorageDirectory().getPath()+"/test.csv",false);
+            FileWriter fw = new FileWriter(Environment.getExternalStorageDirectory().getPath()+"/data1.csv",false);
             PrintWriter pw = new PrintWriter(new BufferedWriter(fw));
 
            loop: for(int i=0;i<itemise.size();i++){
-                for(int j=0;j<8;j++){
+                for(int j=0;j<6;j++){
                     if(itemise.get(i).get(j).equals("NULL")){
                         break loop;
                     }

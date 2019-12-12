@@ -18,7 +18,7 @@ public class CsvReader_editsearch {
         try {
             arraylist_edit.clear();
             // CSVファイルの読み込み
-            File file = new File(Environment.getExternalStorageDirectory().getPath()+"/test.csv");
+            File file = new File(Environment.getExternalStorageDirectory().getPath()+"/data1.csv");
             FileReader fr = new FileReader(file);
             BufferedReader br = new BufferedReader(fr);
             String line;
@@ -35,9 +35,9 @@ public class CsvReader_editsearch {
                     data.setplace(RowData[3]);
                     data.setnumber(RowData[4]);
                     data.setyear(RowData[5]);
-                    data.setmonth(RowData[6]);
-                    data.setday(RowData[7]);
-                    for (int i=0;i<8;i++) {
+                    //data.setmonth(RowData[6]);
+                    //data.setday(RowData[7]);
+                    for (int i=0;i<6;i++) {
                         array.add(RowData[i]);
                     }
                     arraylist_edit.add(array);
