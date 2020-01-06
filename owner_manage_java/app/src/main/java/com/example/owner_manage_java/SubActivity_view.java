@@ -11,12 +11,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-
-import es.dmoral.toasty.Toasty;
 
 import static com.example.owner_manage_java.CsvReader.arraylist_all;
 import static com.example.owner_manage_java.CsvReader_editsearch.arraylist_edit;
@@ -25,11 +22,9 @@ import static com.example.owner_manage_java.CsvReader_search.arraylist_search;
 public class SubActivity_view extends AppCompatActivity {
     Bundle args = new Bundle();
     final MyDialogFragment_view dialogFragment = new MyDialogFragment_view();
-
-    ArrayList<String> spnitem_content_place = new ArrayList<String>(Arrays.asList("島川研", "山野辺研", "宇都木研", "須志田研", "内田研", "大島研", "宮田研", "川村研", "佐藤研","409", "410", "411", "412", "413", "414", "415"));
-    ArrayList<String> spnitem_content_admin = new ArrayList<String>(Arrays.asList("島川", "山野辺", "宇都木", "須志田","内田", "大島", "宮田", "川村", "佐藤"));
+    ArrayList<String> spnitem_content_place = new ArrayList<String>(Readchanger.read_place());
+    ArrayList<String> spnitem_content_admin = new ArrayList<String>(Readchanger.read_admin());
     ArrayList<String> spnitem_content_all = new ArrayList<String>(Arrays.asList("ALL"));
-
     final CsvReader allsearch = new CsvReader();
     final CsvReader_editsearch editsearch = new CsvReader_editsearch();
     final CsvReader_search search = new CsvReader_search();
@@ -39,7 +34,6 @@ public class SubActivity_view extends AppCompatActivity {
     public String[] tempolary_item = new String[6];
     public static String edit;
     public int place;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -154,11 +148,11 @@ public class SubActivity_view extends AppCompatActivity {
                     allsearch.reader(getApplicationContext());
                     listview.setAdapter(listViewAdapter_all);
                 } else if (select.equals("場所") || select.equals("管理者")) {
-
                     listViewAdapter_search.clear();
                     Spinner sp2 = (Spinner) parent;
                     select2 = sp2.getSelectedItem();
-                    search.reader(getApplicationContext(), select, select2);
+                    System.out.println(select2);
+                    search.reader(getApplicationContext(), select,select2);
                     listview.setAdapter(listViewAdapter_search);
                 }
             }

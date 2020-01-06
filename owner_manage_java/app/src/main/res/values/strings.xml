@@ -30,5 +30,8 @@
     <string name="hint">資産コードを入力してください</string>
     <string name="search">検索</string>
     <string name="detalis">詳細</string>
+    <string name="filecheck">ファイルの確認</string>
+    <string name="admin_changer">管理者の変更</string>
+    <string name="place_changer">管理場所の変更</string>
 
 </resources>
