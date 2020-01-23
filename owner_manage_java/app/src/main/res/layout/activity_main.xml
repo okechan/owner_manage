@@ -10,25 +10,25 @@
 
     <Button
         android:id="@+id/viewbutton"
-        android:layout_width="321dp"
-        android:layout_height="59dp"
-        android:layout_marginTop="164dp"
+        android:layout_width="350dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="224dp"
         android:text="閲覧モード"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/checkbutton"
-        android:layout_width="321dp"
-        android:layout_height="59dp"
+        android:layout_width="350dp"
+        android:layout_height="100dp"
         android:text="チェックモード"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/viewbutton"
-        app:layout_constraintVertical_bias="0.102" />
+        app:layout_constraintVertical_bias="0.268" />
 
 
 </android.support.constraint.ConstraintLayout>

@@ -75,6 +75,8 @@ public class SubActivity_view extends AppCompatActivity {
                 ListViewAdapter listViewAdapter_edit = new ListViewAdapter(getApplicationContext(), 0, editsearch.objects);
                 listViewAdapter_all.clear();
                 listViewAdapter_edit.clear();
+                listViewAdapter_edit.notifyDataSetChanged();
+                listViewAdapter_all.notifyDataSetChanged();
                 edit = edit1.getText().toString();
                 if (edit.isEmpty()) {
                     allsearch.reader(getApplicationContext());
@@ -90,7 +92,6 @@ public class SubActivity_view extends AppCompatActivity {
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             final ListViewAdapter listViewAdapter_search = new ListViewAdapter(getApplicationContext(), 0, search.objects);
             final ListViewAdapter listViewAdapter_all = new ListViewAdapter(getApplicationContext(), 0, allsearch.objects);
-
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 edit = edit1.getText().toString();
@@ -143,6 +144,8 @@ public class SubActivity_view extends AppCompatActivity {
             ListViewAdapter listViewAdapter_all = new ListViewAdapter(getApplicationContext(), 0, allsearch.objects);
             ListViewAdapter listViewAdapter_search = new ListViewAdapter(getApplicationContext(),0,search.objects);
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                listViewAdapter_search.notifyDataSetChanged();
+                listViewAdapter_all.notifyDataSetChanged();
                 if (select.equals("ALL")) {
                     listViewAdapter_all.clear();
                     allsearch.reader(getApplicationContext());
@@ -151,7 +154,6 @@ public class SubActivity_view extends AppCompatActivity {
                     listViewAdapter_search.clear();
                     Spinner sp2 = (Spinner) parent;
                     select2 = sp2.getSelectedItem();
-                    System.out.println(select2);
                     search.reader(getApplicationContext(), select,select2);
                     listview.setAdapter(listViewAdapter_search);
                 }

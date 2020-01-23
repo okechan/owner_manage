@@ -22,12 +22,14 @@ import static com.example.owner_manage_java.CsvReader_editsearch.arraylist_edit;
 public class SubActivity_check extends AppCompatActivity{
     Bundle args1 = new Bundle();
     Bundle args2 = new Bundle();
+    final CsvReader parser = new CsvReader();
     final MyDialogFragment_check dialogFragment = new MyDialogFragment_check();
     final CsvReader_editsearch editsearch = new CsvReader_editsearch();
 
     public String[] tempolary_item = new String[6];
     public static String edit;
     public int place;
+    public int num=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +47,6 @@ public class SubActivity_check extends AppCompatActivity{
                 finish();
             }
         });
-        final CsvReader parser = new CsvReader();
         parser.reader(getApplicationContext());
         final ListViewAdapter_check listViewAdapter_all = new ListViewAdapter_check(this, 0, parser.objects);
         lv.setAdapter(listViewAdapter_all);
@@ -70,23 +71,32 @@ public class SubActivity_check extends AppCompatActivity{
                 inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
             }
         });
-
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> av, View view, int position, long id) {
                 listViewAdapter_all.clear();
+                listViewAdapter_edit.clear();
                 edit =edit1.getText().toString();
-                if (!edit.equals("")) {
-                    editsearch.reader(getApplicationContext(), edit);
-                    place = (int) listViewAdapter_edit.getItemId(position);
-                    for (int i = 0; i < 6; i++) tempolary_item[i] = arraylist_edit.get(place).get(i);
-                } else {
+                if (edit.equals("")) {
                     parser.reader(getApplicationContext());
                     place = (int) listViewAdapter_all.getItemId(position);
                     for (int i = 0; i < 6; i++) tempolary_item[i] = arraylist_all.get(place).get(i);
+                    if(num == 1) {
+                        lv.setAdapter(listViewAdapter_all);
+                    }
+                    num=0;
+                } else {
+                    editsearch.reader(getApplicationContext(), edit);
+                    place = (int) listViewAdapter_edit.getItemId(position);
+                    for (int i = 0; i < 6; i++) tempolary_item[i] = arraylist_edit.get(place).get(i);
+                    if(num == 1) {
+                        lv.setAdapter(listViewAdapter_edit);
+                    }
+                    num=1;
                 }
                 args1.putStringArray("temporary", tempolary_item);
-                args2.putInt("place", place);
+                args1.putInt("place", place);
+                args1.putInt("num",num);
                 dialogFragment.setArguments(args1);
                 dialogFragment.show(getSupportFragmentManager(), "dialog_basic");
             }
